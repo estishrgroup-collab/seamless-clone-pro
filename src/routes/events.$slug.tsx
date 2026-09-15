@@ -179,7 +179,8 @@ function ModelCard({
   }
 
   return (
-    <article className="surface-card overflow-hidden">
+    <article className="feature-card">
+      <div className="relative">
       <img
         src={modelPortrait(model, index)}
         alt={model.name}
@@ -188,11 +189,18 @@ function ModelCard({
         height={1024}
         className="aspect-3/4 w-full object-cover"
       />
-      <div className="space-y-3 p-5">
+      <div className="media-fade" />
+      {model.number ? (
+        <span className="absolute top-4 left-4 flex size-10 items-center justify-center rounded-full border border-primary/40 bg-background/70 font-display text-lg text-primary backdrop-blur">
+          {model.number}
+        </span>
+      ) : null}
+      </div>
+      <div className="space-y-3 p-6">
         <p className="text-xs tracking-[0.16em] text-muted-foreground uppercase">
           {[model.number ? `No. ${model.number}` : null, model.city].filter(Boolean).join(" · ")}
         </p>
-        <h3 className="text-lg">{model.name}</h3>
+        <h3 className="text-2xl">{model.name}</h3>
         {model.bio ? <p className="text-sm text-muted-foreground">{model.bio}</p> : null}
 
         <div className="pt-2">
@@ -200,8 +208,8 @@ function ModelCard({
             <span className="text-muted-foreground">{model.votes.toLocaleString("en-KE")} votes</span>
             <span className="text-muted-foreground">{share}%</span>
           </div>
-          <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-            <div className="h-full rounded-full bg-primary" style={{ width: `${share}%` }} />
+          <div className="vote-track mt-2">
+            <span className="vote-fill" style={{ width: `${share}%` }} />
           </div>
         </div>
 
