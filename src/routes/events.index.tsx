@@ -32,9 +32,9 @@ function EventsPage() {
   return (
     <SiteLayout>
       <section className="stage-hero">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-6 py-20">
           <p className="kicker">Line-up</p>
-          <h1 className="mt-4 text-4xl">Voting events</h1>
+          <h1 className="mt-5 text-5xl sm:text-6xl">Voting events</h1>
           <p className="mt-3 text-sm font-medium text-accent">
             Each vote costs {formatKsh(votePrice(content))}
           </p>
@@ -42,7 +42,7 @@ function EventsPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {(events ?? []).map((event) => (
             <EventCard key={event.id} event={event} models={models ?? []} />
           ))}

@@ -80,23 +80,19 @@ function EventDetail() {
   return (
     <SiteLayout>
       <section className="stage-hero">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-14 md:flex-row">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-20 md:flex-row md:items-center">
           <img
             src={eventCover(event)}
             alt={event.title}
             width={1024}
             height={1024}
-            className="h-56 w-56 shrink-0 rounded-lg border border-border object-cover"
+            className="h-64 w-64 shrink-0 rounded-xl border border-border object-cover shadow-[var(--shadow-card)]"
           />
           <div>
-            <span
-              className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${
-                event.voting_open ? "bg-primary/15 text-primary" : "bg-secondary text-muted-foreground"
-              }`}
-            >
+            <span className={event.voting_open ? "pill-live" : "pill-muted"}>
               {event.voting_open ? "Voting open" : "Voting closed"}
             </span>
-            <h1 className="mt-4 text-4xl">{event.title}</h1>
+            <h1 className="mt-5 text-5xl sm:text-6xl">{event.title}</h1>
             <p className="mt-2 text-muted-foreground">
               {[event.date_label, event.time_label, event.venue].filter(Boolean).join(" · ")}
             </p>
@@ -112,13 +108,16 @@ function EventDetail() {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <h2 className="text-2xl">Meet the models</h2>
+          <div>
+            <p className="kicker">The contestants</p>
+            <h2 className="mt-3 text-4xl">Meet the models</h2>
+          </div>
           <p className="text-sm text-muted-foreground">
             Each vote costs {formatKsh(price)}. One vote per person.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((model, i) => (
             <ModelCard
               key={model.id}
@@ -131,7 +130,7 @@ function EventDetail() {
           ))}
         </div>
 
-        <Link to="/events" className="mt-10 inline-block text-sm text-accent">
+        <Link to="/events" className="btn-outline mt-12">
           ← All events
         </Link>
       </section>
