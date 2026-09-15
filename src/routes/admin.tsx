@@ -508,17 +508,17 @@ function ContentAdmin() {
         .map((key) => (
           <div key={key}>
             <label className="label-xs">{key.replace(/_/g, " ")}</label>
-            {rows[key].length > 80 ? (
+            {(rows[key] ?? "").length > 80 ? (
               <textarea
                 className="field"
                 rows={3}
-                value={rows[key]}
+                value={rows[key] ?? ""}
                 onChange={(e) => setRows({ ...rows, [key]: e.target.value })}
               />
             ) : (
               <input
                 className="field"
-                value={rows[key]}
+                value={rows[key] ?? ""}
                 onChange={(e) => setRows({ ...rows, [key]: e.target.value })}
               />
             )}
